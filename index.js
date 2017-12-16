@@ -1,11 +1,6 @@
 'use strict';
-var fs = require('fs');
+const app = require('./server/app')
+const awsServerlessExpress = require('aws-serverless-express')
+const server = awsServerlessExpress.createServer(app)
 
- exports.get = function(event, context) {
-   var contents = fs.readFileSync("public/index.html");
-   context.succeed({
-     statusCode: 200,
-     body: contents.toString(),
-     headers: {'Content-Type': 'text/html'}
-   });
- };
+exports.handler = (event, context) => awsServerlessExpress.proxy(server, event, context);
