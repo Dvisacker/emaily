@@ -1,5 +1,5 @@
 'use strict';
-const app = require('./server/app')
+const app = require('./server/index')
 const awsServerlessExpress = require('aws-serverless-express')
 const server = awsServerlessExpress.createServer(app)
 
